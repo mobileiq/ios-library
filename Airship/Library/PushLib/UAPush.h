@@ -29,7 +29,7 @@
 #define PUSH_UI_CLASS @"UAPushUI"
 #define PUSH_DELEGATE_CLASS @"UAPushNotificationHandler"
 
-@class UA_ASIHTTPRequest;
+@class UAHTTPRequest;
 
 UA_VERSION_INTERFACE(UAPushVersion)
 
@@ -116,9 +116,9 @@ UA_VERSION_INTERFACE(UAPushVersion)
 @protocol UARegistrationObserver
 @optional
 - (void)registerDeviceTokenSucceeded;
-- (void)registerDeviceTokenFailed:(UA_ASIHTTPRequest *)request;
+- (void)registerDeviceTokenFailed:(UAHTTPRequest *)request;
 - (void)unRegisterDeviceTokenSucceeded;
-- (void)unRegisterDeviceTokenFailed:(UA_ASIHTTPRequest *)request;
+- (void)unRegisterDeviceTokenFailed:(UAHTTPRequest *)request;
 @end
 
 /**

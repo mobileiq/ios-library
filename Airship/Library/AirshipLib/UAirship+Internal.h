@@ -32,5 +32,11 @@
  * App 1.0 (iPad; iPhone OS <version>; UALib <version>; <app key>; en_US)
  */
 - (void)configureUserAgent;
+/**
+ * Returns a user agent string to use in connections
+ * [LIB-101] User agent string should be:
+ * App 1.0 (iPad; iPhone OS <version>; UALib <version>; <app key>; en_US)
+ */
++ (NSString *)userAgent;
 
 @end

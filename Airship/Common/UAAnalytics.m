@@ -535,7 +535,7 @@ UAAnalyticsValue * const UAAnalyticsFalseValue = @"false";
     }
 }
 
-- (void)requestDidFail:(UAHTTPRequest *)request {
+- (void)request:(UAHTTPRequest *)request didFailWithError:(NSError *)error {
     UA_ANALYTICS_LOG(@"Send analytics data request failed.");
     self.connection = nil;
     [self invalidateBackgroundTask];

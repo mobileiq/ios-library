@@ -59,7 +59,7 @@
 - (void)requestDidSucceed:(UAHTTPRequest *)request
                response:(NSHTTPURLResponse *)response
              responseData:(NSData *)responseData;
-- (void)requestDidFail:(UAHTTPRequest *)request;
+- (void)request:(UAHTTPRequest *)request didFailWithError:(NSError *)error;
 @end
 
 

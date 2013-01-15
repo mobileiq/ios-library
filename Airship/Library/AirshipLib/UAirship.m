@@ -110,7 +110,7 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
 }
 
 + (void)takeOff:(NSDictionary *)options {
-    
+
     // UAirship needs to be run on the main thread
     if(![[NSThread currentThread] isMainThread]){
         NSException *mainThreadException = [NSException exceptionWithName:UAirshipTakeOffBackgroundThreadException
@@ -118,30 +118,30 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
                                                                  userInfo:nil];
         [mainThreadException raise];
     }
-    
+
     //Airships only take off once!
     if (_sharedAirship) {
         return;
     }
-    
+
     //Application launch options
     NSDictionary *launchOptions = [options objectForKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
+
     //Set up analytics - record when app is opened from a push
     NSMutableDictionary *analyticsOptions = [options objectForKey:UAirshipTakeOffOptionsAnalyticsKey];
     if (analyticsOptions == nil) {
         analyticsOptions = [[[NSMutableDictionary alloc] init] autorelease];
     }
-    [analyticsOptions setValue:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] 
+    [analyticsOptions setValue:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
                         forKey:UAAnalyticsOptionsRemoteNotificationKey];
-    
-    
+
+
     // Load configuration
     // Primary configuration comes from the UAirshipTakeOffOptionsAirshipConfig dictionary and will
     // override any options defined in AirshipConfig.plist
     NSMutableDictionary *config;
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"AirshipConfig" ofType:@"plist"];
-    
+
     if (configPath) {
         config = [[[NSMutableDictionary alloc] initWithContentsOfFile:configPath] autorelease];
         [config addEntriesFromDictionary:[options objectForKey:UAirshipTakeOffOptionsAirshipConfigKey]];
@@ -150,9 +150,9 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
     }
 
     if ([config count] > 0) {
-        
+
         BOOL inProduction = [[config objectForKey:@"APP_STORE_OR_AD_HOC_BUILD"] boolValue];
-        
+
         // Set up logging - enabled flag and loglevels
         NSString *configLogLevel = [config objectForKey:@"LOG_LEVEL"];
         NSString *configLoggingEnabled = [config objectForKey:@"LOGGING_ENABLED"];
@@ -164,19 +164,19 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
 
         // Set the default to ERROR for production apps, DEBUG for dev apps
         UALogLevel defaultLogLevel = inProduction ? UALogLevelError : UALogLevelDebug;
-        
+
         // Respect the config value if set
         UALogLevel newLogLevel = configLogLevel ? [configLogLevel intValue] : defaultLogLevel;
-        
+
         //only update the log level if it wasn't already defined in code
         if (UALogLevelUndefined == uaLogLevel) {
             [UAirship setLogLevel:newLogLevel];
         }
 
-        
+
         NSString *configAppKey;
         NSString *configAppSecret;
-        
+
         if (inProduction) {
             configAppKey = [config objectForKey:@"PRODUCTION_APP_KEY"];
             configAppSecret = [config objectForKey:@"PRODUCTION_APP_SECRET"];
@@ -184,40 +184,40 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
             configAppKey = [config objectForKey:@"DEVELOPMENT_APP_KEY"];
             configAppSecret = [config objectForKey:@"DEVELOPMENT_APP_SECRET"];
         }
-        
+
         // strip leading and trailing whitespace
         configAppKey = [configAppKey stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         configAppSecret = [configAppSecret stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
+
         //Check for a custom UA server value
         NSString *airshipServer = [config objectForKey:@"AIRSHIP_SERVER"];
         if (airshipServer == nil) {
             airshipServer = kAirshipProductionServer;
         }
-        
+
         _sharedAirship = [[UAirship alloc] initWithId:configAppKey identifiedBy:configAppSecret];
         _sharedAirship.server = airshipServer;
-        
+
         //Add the server to the analytics options, but do not delete if not set as
         //it may also be set in the options parameters
         NSString *analyticsServer = [config objectForKey:@"ANALYTICS_SERVER"];
         if (analyticsServer != nil) {
             [analyticsOptions setObject:analyticsServer forKey:UAAnalyticsOptionsServerKey];
         }
-        
-        
+
+
         //For testing, set this value in AirshipConfig to clear out
         //the keychain credentials, as they will otherwise be persisted
         //even when the application is uninstalled.
         if ([[config objectForKey:@"DELETE_KEYCHAIN_CREDENTIALS"] boolValue]) {
-            
+
             UALOG(@"Deleting the keychain credentials");
             [UAKeychainUtils deleteKeychainValue:[[UAirship shared] appId]];
-            
+
             UALOG(@"Deleting the UA device ID");
             [UAKeychainUtils deleteKeychainValue:kUAKeychainDeviceIDKey];
         }
-        
+
     } else {
         NSString* okStr = @"OK";
         NSString* errorMessage = @"The AirshipConfig.plist file is missing.";
@@ -227,30 +227,30 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
                                                            delegate:nil
                                                   cancelButtonTitle:okStr
                                                   otherButtonTitles:nil];
-        
+
         [someError show];
         [someError release];
-        
+
         //Use blank credentials to prevent app from crashing while error msg
         //is displayed
         _sharedAirship = [[UAirship alloc] initWithId:@"" identifiedBy:@""];
-        
+
         return;
 
     }
-    
+
     UA_LINFO(@"App Key: %@", _sharedAirship.appId);
     UA_LINFO(@"App Secret: %@", _sharedAirship.appSecret);
     UA_LINFO(@"Server: %@", _sharedAirship.server);
-    
-    
+
+
     //Check the format of the app key and password.
     //If they're missing or malformed, stop takeoff
     //and prevent the app from connecting to UA.
     NSPredicate *matchPred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^\\S{22}+$"];
-    BOOL match = [matchPred evaluateWithObject:_sharedAirship.appId] 
-                    && [matchPred evaluateWithObject:_sharedAirship.appSecret];  
-    
+    BOOL match = [matchPred evaluateWithObject:_sharedAirship.appId]
+                    && [matchPred evaluateWithObject:_sharedAirship.appSecret];
+
     if (!match) {
         NSString* okStr = @"OK";
         NSString* errorMessage =
@@ -263,53 +263,52 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
                                                            delegate:nil
                                                   cancelButtonTitle:okStr
                                                   otherButtonTitles:nil];
-        
+
         [someError show];
         [someError release];
         return;
-        
+
     }
-    
+
     [_sharedAirship configureUserAgent];
-    
+
     _sharedAirship.ready = true;
     _sharedAirship.analytics = [[[UAAnalytics alloc] initWithOptions:analyticsOptions] autorelease];
-    
+
     //Send Startup Analytics Info
     //init first event
     [_sharedAirship.analytics addEvent:[UAEventAppInit eventWithContext:nil]];
-    
+
     //Handle custom options
     if (options != nil) {
-        
+
         NSString *defaultUsername = [options valueForKey:UAirshipTakeOffOptionsDefaultUsernameKey];
         NSString *defaultPassword = [options valueForKey:UAirshipTakeOffOptionsDefaultPasswordKey];
         if (defaultUsername != nil && defaultPassword != nil) {
             [UAUser setDefaultUsername:defaultUsername withPassword:defaultPassword];
         }
-        
+
     }
-    
+
     //create/setup user (begin listening for device token changes)
     [[UAUser defaultUser] initializeUser];
 }
 
 + (void)land {
-
     [[UA_ASIHTTPRequest sharedQueue] cancelAllOperations];
-    
+
 	// add app_exit event
     [_sharedAirship.analytics addEvent:[UAEventAppExit eventWithContext:nil]];
-	
+
     //Land common classes
     [UAUser land];
-    
+
     //Land the modular libaries first
     [NSClassFromString(@"UAPush") land];
     [NSClassFromString(@"UAInbox") land];
     [NSClassFromString(@"UAStoreFront") land];
     [NSClassFromString(@"UASubscriptionManager") land];
-    
+
     //Finally, release the airship!
     [_sharedAirship release];
     _sharedAirship = nil;
@@ -330,33 +329,37 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
     return [[UAPush shared] deviceToken];
 }
 
-- (void)configureUserAgent
-{
+- (void)configureUserAgent {
+    NSString *userAgent = [UAirship userAgent];
+    UALOG(@"Setting User-Agent for UA requests to %@", userAgent);
+    [UA_ASIHTTPRequest setDefaultUserAgentString:userAgent];
+}
+
++ (NSString *)userAgent {
     /*
      * [LIB-101] User agent string should be:
      * App 1.0 (iPad; iPhone OS 5.0.1; UALib 1.1.2; <app key>; en_US)
      */
-    
+
     UIDevice *device = [UIDevice currentDevice];
-    
+
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *info = [bundle infoDictionary];
-    
+
     NSString *appName = [info objectForKey:(NSString*)kCFBundleNameKey];
     NSString *appVersion = [info objectForKey:(NSString*)kCFBundleVersionKey];
-    
+
     NSString *deviceModel = [device model];
     NSString *osName = [device systemName];
     NSString *osVersion = [device systemVersion];
-    
+
     NSString *libVersion = [AirshipVersion get];
     NSString *locale = [[NSLocale currentLocale] localeIdentifier];
-    
+
     NSString *userAgent = [NSString stringWithFormat:@"%@ %@ (%@; %@ %@; UALib %@; %@; %@)",
-                           appName, appVersion, deviceModel, osName, osVersion, libVersion, appId, locale];
-    
-    UALOG(@"Setting User-Agent for UA requests to %@", userAgent);
-    [UA_ASIHTTPRequest setDefaultUserAgentString:userAgent];
+                           appName, appVersion, deviceModel, osName, osVersion, libVersion, _sharedAirship->appId, locale];
+
+    return userAgent;
 }
 
 #pragma mark -

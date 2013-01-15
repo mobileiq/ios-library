@@ -29,16 +29,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #import "UAInbox.h"
 #import "UAInboxMessageList.h"
 #import "UAInboxDBManager.h"
-#import "UA_ASIHTTPRequest.h"
 #import "UAUtils.h"
+
+#import "UAHTTPConnection.h"
 
 /*
  * Private methods
  */
-@interface UAInboxMessage()
-- (void)requestWentWrong:(UA_ASIHTTPRequest *)request;
-- (void)markAsReadFinished:(UA_ASIHTTPRequest *)request;
-- (void)markAsReadFailed:(UA_ASIHTTPRequest *)request;
+@interface UAInboxMessage() <UAHTTPConnectionDelegate>
+@property (nonatomic, retain) UAHTTPConnection *connection;
+- (void)requestWentWrong:(UAHTTPRequest *)request withError:(NSError *)error;
 @end
 
 /*
@@ -92,6 +92,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     RELEASE_SAFELY(messageSent);
     RELEASE_SAFELY(title);
     RELEASE_SAFELY(extra);
+    _connection.delegate = nil;
+    RELEASE_SAFELY(_connection);
     [super dealloc];
 }
 
@@ -126,8 +128,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma mark -
 #pragma mark Mark As Read Delegate Methods
 
-- (void)requestWentWrong:(UA_ASIHTTPRequest *)request {
-    NSError *error = [request error];
+- (void)requestWentWrong:(UAHTTPRequest *)request withError:(NSError *)error {
     UALOG(@"Connection ERROR: NSError query result: %@ for URL: %@",
           error, [request.url absoluteString]);
     inbox.isBatchUpdating = NO;
@@ -146,32 +147,41 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     inbox.isBatchUpdating = YES;
 
     NSString *urlString = [NSString stringWithFormat: @"%@%@", self.messageURL, @"read/"];
-    NSURL *url = [NSURL URLWithString: urlString];
     UALOG(@"MARK AS READ %@", urlString);
     
-    UA_ASIHTTPRequest *request = 
-        [UAUtils userRequestWithURL:url 
-                             method:@"POST" 
-                           delegate:self 
-                             finish:@selector(markAsReadFinished:) 
-                               fail:@selector(markAsReadFailed:)];
-    [request startAsynchronous];
+    UAHTTPRequest *request = [UAUtils userHTTPRequestWithURLString:urlString method:@"POST"];
+    self.connection = [UAHTTPConnection connectionWithRequest:request];
+    self.connection.delegate = self;
+    [self.connection start];
     return YES;
 }
 
-- (void)markAsReadFinished:(UA_ASIHTTPRequest *)request {
-    
-    if (request.responseStatusCode != 200) {
+- (void)request:(UAHTTPRequest *)request didFailWithError:(NSError *)error {
+    [self markAsReadFailed:request withError:error];
+}
+
+- (void)requestDidSucceed:(UAHTTPRequest *)request
+                 response:(NSHTTPURLResponse *)response
+             responseData:(NSData *)responseData {
+    [self markAsReadFinished:request withResponse:response responseData:responseData];
+}
+
+- (void)markAsReadFinished:(UAHTTPRequest *)request
+              withResponse:(NSHTTPURLResponse *)response
+              responseData:(NSData *)responseData {
+    NSString *responseString = [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease];
+    if (response.statusCode != 200) {
         
         UALOG(@"Server error when setting message as read, response: %d - %@",
-              request.responseStatusCode,
-              request.responseString);
-        [self markAsReadFailed:request];
+              response.statusCode,
+              responseString);
+        NSError *error = [NSError errorWithDomain:@"UAInboxMessageErrorDomain" code:response.statusCode userInfo:nil];
+        [self markAsReadFailed:request withError:error];
         
     } else {
         UALOG(@"Finished: %@ - %d - %@", [[request url] absoluteString],
-              [request responseStatusCode],
-              request.responseString);
+              response.statusCode,
+              responseString);
         
         if (self.unread) {
             
@@ -186,8 +196,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
 }
 
-- (void)markAsReadFailed:(UA_ASIHTTPRequest*)request {
-    [self requestWentWrong:request];
+- (void)markAsReadFailed:(UAHTTPRequest*)request withError:(NSError *)error {
+    [self requestWentWrong:request withError:error];
     [inbox notifyObservers:@selector(singleMessageMarkAsReadFailed:) withObject:self];
 }
 

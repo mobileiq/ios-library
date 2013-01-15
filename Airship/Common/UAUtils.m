@@ -32,10 +32,12 @@
 #import "UA_SBJSON.h"
 #import "UA_Base64.h"
 #import "UA_ASIHTTPRequest.h"
+#import "UAHTTPConnection.h"
 
 // UALib
 #import "UAUser.h"
 #import "UAirship.h"
+#import "UAirship+Internal.h"
 #import "UAKeychainUtils.h"
 
 // C includes
@@ -199,6 +201,24 @@
     
     request.timeOutSeconds = 60;
     
+    return request;
+}
+
++ (UAHTTPRequest *)HTTPRequestWithURLString:(NSString *)url method:(NSString *)method {
+    UAHTTPRequest *request = [UAHTTPRequest requestWithURLString:url];
+    request.HTTPMethod = method;
+    request.username = [UAirship shared].appId;
+    request.password = [UAirship shared].appSecret;
+    [request addRequestHeader:@"User-Agent" value:[UAirship userAgent]];
+    return request;
+}
+
++ (UAHTTPRequest *)userHTTPRequestWithURLString:(NSString *)url method:(NSString *)method {
+    UAHTTPRequest *request = [UAHTTPRequest requestWithURLString:url];
+    request.HTTPMethod = method;
+    request.username = [UAUser defaultUser].username;
+    request.password = [UAUser defaultUser].password;
+    [request addRequestHeader:@"User-Agent" value:[UAirship userAgent]];
     return request;
 }
 

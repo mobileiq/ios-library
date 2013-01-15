@@ -95,6 +95,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		073E850A16A5C027009B748D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18C02962124F21B800D49CD5 /* AirshipLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BB8860A7159A7E9600584445;
+			remoteInfo = AirshipPushLib;
+		};
 		18C02972124F21B800D49CD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18C02962124F21B800D49CD5 /* AirshipLib.xcodeproj */;
@@ -586,6 +593,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				073E850B16A5C027009B748D /* PBXTargetDependency */,
 				18C029BC124F22F500D49CD5 /* PBXTargetDependency */,
 			);
 			name = PushSample;
@@ -812,6 +820,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		073E850B16A5C027009B748D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AirshipPushLib;
+			targetProxy = 073E850A16A5C027009B748D /* PBXContainerItemProxy */;
+		};
 		18C029BC124F22F500D49CD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AirshipLib;

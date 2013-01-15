@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 
 @class UA_ASIHTTPRequest;
+@class UAHTTPRequest;
 
 @interface UAUtils : NSObject {
 
@@ -74,6 +75,12 @@
 
 + (UA_ASIHTTPRequest *)requestWithURL:(NSURL *)url method:(NSString *)method
                              delegate:(id)delegate finish:(SEL)sel1 fail:(SEL)sel2;
+
+/**
+ * Authenticated UAHTTPRequest helper method
+ */
++ (UAHTTPRequest *)HTTPRequestWithURLString:(NSString *)url method:(NSString *)method;
++ (UAHTTPRequest *)userHTTPRequestWithURLString:(NSString *)url method:(NSString *)method;
 
 /**
  * Returns a basic auth header string.

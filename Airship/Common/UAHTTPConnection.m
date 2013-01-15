@@ -184,8 +184,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     UALOG(@"ERROR: connection %@ didFailWithError: %@", self, error);
-    if (delegate && [delegate respondsToSelector:@selector(requestDidFail:)]) {
-        [delegate requestDidFail:request];
+    if (delegate && [delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+        [delegate request:request didFailWithError:error];
     }
 }
 
