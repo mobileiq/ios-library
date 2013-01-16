@@ -88,6 +88,52 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
 }
 
 #pragma mark -
+#pragma mark Check profile for production/development
+/**
+ Profile parsing from https://gist.github.com/711794
+ */
++ (NSDictionary *)parseEmbeddedProfile {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"];
+    NSString *embeddedProfile = [NSString stringWithContentsOfFile:path
+                                                          encoding:NSISOLatin1StringEncoding
+                                                             error:nil];
+    NSDictionary *plist = nil;
+
+    NSScanner *scanner = [[NSScanner alloc] initWithString:embeddedProfile];
+
+    if ([scanner scanUpToString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" intoString:nil]) {
+        NSString *plistString = nil;
+        if ([scanner scanUpToString:@"</plist>" intoString:&plistString]) {
+            NSData *data = [[plistString stringByAppendingString:@"</plist>"] dataUsingEncoding:NSUTF8StringEncoding];
+            plist = [NSPropertyListSerialization propertyListFromData:data
+                                                     mutabilityOption:NSPropertyListImmutable
+                                                               format:nil
+                                                     errorDescription:nil];
+        }
+    }
+    
+    [scanner release];
+
+    return plist;
+}
+
++ (BOOL)productionProfile {
+    static BOOL result = NO;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSDictionary *entitlements = [self parseEmbeddedProfile][@"Entitlements"];
+        result = [entitlements[@"aps-environment"] isEqualToString:@"production"];
+    });
+
+    return result;
+}
+
+- (BOOL)isProductionProfile {
+    return [UAirship productionProfile];
+}
+
+#pragma mark -
 #pragma mark Object Lifecycle
 - (void)dealloc {
     RELEASE_SAFELY(appId);
@@ -150,8 +196,7 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
     }
 
     if ([config count] > 0) {
-
-        BOOL inProduction = [[config objectForKey:@"APP_STORE_OR_AD_HOC_BUILD"] boolValue];
+        BOOL inProduction = [self productionProfile];
 
         // Set up logging - enabled flag and loglevels
         NSString *configLogLevel = [config objectForKey:@"LOG_LEVEL"];

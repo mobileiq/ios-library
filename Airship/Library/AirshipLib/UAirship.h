@@ -130,6 +130,12 @@ extern NSString * const UAirshipTakeOffBackgroundThreadException;
  */
 @property (nonatomic, assign) BOOL ready;
 
+/**
+ * Is the provisioning profile the app is signed with a production
+ * or development profile?
+ */
+@property (nonatomic, readonly, assign, getter = isProductionProfile) BOOL productionProfile;
+
 ///---------------------------------------------------------------------------------------
 /// @name Location Services
 ///---------------------------------------------------------------------------------------
