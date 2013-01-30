@@ -258,6 +258,38 @@
 		E9F73FB412ADE93A003CF572 /* UA_ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F73FB212ADE93A003CF572 /* UA_ASIDataDecompressor.m */; };
 		E9FFDD8D129BAADB0012EF40 /* UADownloadContent.h in Headers */ = {isa = PBXBuildFile; fileRef = E9FFDD8B129BAADB0012EF40 /* UADownloadContent.h */; };
 		E9FFDD8E129BAADB0012EF40 /* UADownloadContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FFDD8C129BAADB0012EF40 /* UADownloadContent.m */; };
+		F7E8D53E16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */; };
+		F7E8D53F16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */; };
+		F7E8D54016B987E0006C1918 /* UABeveledLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D51E16B987DF006C1918 /* UABeveledLoadingIndicator.m */; };
+		F7E8D54116B987E0006C1918 /* UABeveledLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D51E16B987DF006C1918 /* UABeveledLoadingIndicator.m */; };
+		F7E8D54216B987E0006C1918 /* UAInboxAlertHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51F16B987DF006C1918 /* UAInboxAlertHandler.h */; };
+		F7E8D54316B987E0006C1918 /* UAInboxAlertHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51F16B987DF006C1918 /* UAInboxAlertHandler.h */; };
+		F7E8D54416B987E0006C1918 /* UAInboxAlertHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52016B987DF006C1918 /* UAInboxAlertHandler.m */; };
+		F7E8D54516B987E0006C1918 /* UAInboxAlertHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52016B987DF006C1918 /* UAInboxAlertHandler.m */; };
+		F7E8D54616B987E0006C1918 /* UAInboxMessageListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52116B987DF006C1918 /* UAInboxMessageListCell.h */; };
+		F7E8D54716B987E0006C1918 /* UAInboxMessageListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52116B987DF006C1918 /* UAInboxMessageListCell.h */; };
+		F7E8D54816B987E0006C1918 /* UAInboxMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52216B987DF006C1918 /* UAInboxMessageListCell.m */; };
+		F7E8D54916B987E0006C1918 /* UAInboxMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52216B987DF006C1918 /* UAInboxMessageListCell.m */; };
+		F7E8D54A16B987E0006C1918 /* UAInboxMessageListController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52316B987DF006C1918 /* UAInboxMessageListController.h */; };
+		F7E8D54B16B987E0006C1918 /* UAInboxMessageListController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52316B987DF006C1918 /* UAInboxMessageListController.h */; };
+		F7E8D54C16B987E0006C1918 /* UAInboxMessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52416B987DF006C1918 /* UAInboxMessageListController.m */; };
+		F7E8D54D16B987E0006C1918 /* UAInboxMessageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52416B987DF006C1918 /* UAInboxMessageListController.m */; };
+		F7E8D54E16B987E0006C1918 /* UAInboxMessageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52516B987DF006C1918 /* UAInboxMessageViewController.h */; };
+		F7E8D54F16B987E0006C1918 /* UAInboxMessageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52516B987DF006C1918 /* UAInboxMessageViewController.h */; };
+		F7E8D55016B987E0006C1918 /* UAInboxMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52616B987DF006C1918 /* UAInboxMessageViewController.m */; };
+		F7E8D55116B987E0006C1918 /* UAInboxMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52616B987DF006C1918 /* UAInboxMessageViewController.m */; };
+		F7E8D55216B987E0006C1918 /* UAInboxNavUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52716B987DF006C1918 /* UAInboxNavUI.h */; };
+		F7E8D55316B987E0006C1918 /* UAInboxNavUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52716B987DF006C1918 /* UAInboxNavUI.h */; };
+		F7E8D55416B987E0006C1918 /* UAInboxNavUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52816B987DF006C1918 /* UAInboxNavUI.m */; };
+		F7E8D55516B987E0006C1918 /* UAInboxNavUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52816B987DF006C1918 /* UAInboxNavUI.m */; };
+		F7E8D55616B987E0006C1918 /* UAInboxOverlayController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52916B987DF006C1918 /* UAInboxOverlayController.h */; };
+		F7E8D55716B987E0006C1918 /* UAInboxOverlayController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52916B987DF006C1918 /* UAInboxOverlayController.h */; };
+		F7E8D55816B987E0006C1918 /* UAInboxOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52A16B987DF006C1918 /* UAInboxOverlayController.m */; };
+		F7E8D55916B987E0006C1918 /* UAInboxOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52A16B987DF006C1918 /* UAInboxOverlayController.m */; };
+		F7E8D55A16B987E0006C1918 /* UAInboxUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52B16B987DF006C1918 /* UAInboxUI.h */; };
+		F7E8D55B16B987E0006C1918 /* UAInboxUI.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D52B16B987DF006C1918 /* UAInboxUI.h */; };
+		F7E8D55C16B987E0006C1918 /* UAInboxUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52C16B987DF006C1918 /* UAInboxUI.m */; };
+		F7E8D55D16B987E0006C1918 /* UAInboxUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D52C16B987DF006C1918 /* UAInboxUI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -498,6 +530,36 @@
 		E9F73FB212ADE93A003CF572 /* UA_ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UA_ASIDataDecompressor.m; sourceTree = "<group>"; };
 		E9FFDD8B129BAADB0012EF40 /* UADownloadContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UADownloadContent.h; sourceTree = "<group>"; };
 		E9FFDD8C129BAADB0012EF40 /* UADownloadContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UADownloadContent.m; sourceTree = "<group>"; };
+		F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UABeveledLoadingIndicator.h; sourceTree = "<group>"; };
+		F7E8D51E16B987DF006C1918 /* UABeveledLoadingIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UABeveledLoadingIndicator.m; sourceTree = "<group>"; };
+		F7E8D51F16B987DF006C1918 /* UAInboxAlertHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxAlertHandler.h; sourceTree = "<group>"; };
+		F7E8D52016B987DF006C1918 /* UAInboxAlertHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxAlertHandler.m; sourceTree = "<group>"; };
+		F7E8D52116B987DF006C1918 /* UAInboxMessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxMessageListCell.h; sourceTree = "<group>"; };
+		F7E8D52216B987DF006C1918 /* UAInboxMessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxMessageListCell.m; sourceTree = "<group>"; };
+		F7E8D52316B987DF006C1918 /* UAInboxMessageListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxMessageListController.h; sourceTree = "<group>"; };
+		F7E8D52416B987DF006C1918 /* UAInboxMessageListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxMessageListController.m; sourceTree = "<group>"; };
+		F7E8D52516B987DF006C1918 /* UAInboxMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxMessageViewController.h; sourceTree = "<group>"; };
+		F7E8D52616B987DF006C1918 /* UAInboxMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxMessageViewController.m; sourceTree = "<group>"; };
+		F7E8D52716B987DF006C1918 /* UAInboxNavUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxNavUI.h; sourceTree = "<group>"; };
+		F7E8D52816B987DF006C1918 /* UAInboxNavUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxNavUI.m; sourceTree = "<group>"; };
+		F7E8D52916B987DF006C1918 /* UAInboxOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxOverlayController.h; sourceTree = "<group>"; };
+		F7E8D52A16B987DF006C1918 /* UAInboxOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxOverlayController.m; sourceTree = "<group>"; };
+		F7E8D52B16B987DF006C1918 /* UAInboxUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAInboxUI.h; sourceTree = "<group>"; };
+		F7E8D52C16B987DF006C1918 /* UAInboxUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAInboxUI.m; sourceTree = "<group>"; };
+		F7E8D52F16B987DF006C1918 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		F7E8D53016B987DF006C1918 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		F7E8D53116B987DF006C1918 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		F7E8D53216B987DF006C1918 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
+		F7E8D53416B987DF006C1918 /* overlayCloseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlayCloseBtn.png; sourceTree = "<group>"; };
+		F7E8D53516B987DF006C1918 /* overlayCloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlayCloseBtn@2x.png"; sourceTree = "<group>"; };
+		F7E8D53616B987DF006C1918 /* UAInboxLocalization.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UAInboxLocalization.bundle; sourceTree = "<group>"; };
+		F7E8D53716B987DF006C1918 /* UAInboxMessageListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAInboxMessageListCell.xib; sourceTree = "<group>"; };
+		F7E8D53816B987DF006C1918 /* UAInboxMessageListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAInboxMessageListController.xib; sourceTree = "<group>"; };
+		F7E8D53916B987DF006C1918 /* UAInboxMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAInboxMessageViewController.xib; sourceTree = "<group>"; };
+		F7E8D53A16B987DF006C1918 /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
+		F7E8D53B16B987DF006C1918 /* uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheck@2x.png"; sourceTree = "<group>"; };
+		F7E8D53C16B987DF006C1918 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		F7E8D53D16B987DF006C1918 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,6 +846,7 @@
 		D9FD1A13122DB77000522B4E /* Airship */ = {
 			isa = PBXGroup;
 			children = (
+				F7E8D51A16B987DF006C1918 /* Inbox */,
 				D9FD1C74122DBD4300522B4E /* External */,
 				D9FD1C3A122DBCEA00522B4E /* Common */,
 				D9FD1A48122DB77000522B4E /* Library */,
@@ -885,6 +948,84 @@
 			path = External;
 			sourceTree = "<group>";
 		};
+		F7E8D51A16B987DF006C1918 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D51B16B987DF006C1918 /* Classes */,
+				F7E8D52D16B987DF006C1918 /* Resources */,
+			);
+			name = Inbox;
+			path = UI/Default/Inbox;
+			sourceTree = "<group>";
+		};
+		F7E8D51B16B987DF006C1918 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D51C16B987DF006C1918 /* Shared */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F7E8D51C16B987DF006C1918 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */,
+				F7E8D51E16B987DF006C1918 /* UABeveledLoadingIndicator.m */,
+				F7E8D51F16B987DF006C1918 /* UAInboxAlertHandler.h */,
+				F7E8D52016B987DF006C1918 /* UAInboxAlertHandler.m */,
+				F7E8D52116B987DF006C1918 /* UAInboxMessageListCell.h */,
+				F7E8D52216B987DF006C1918 /* UAInboxMessageListCell.m */,
+				F7E8D52316B987DF006C1918 /* UAInboxMessageListController.h */,
+				F7E8D52416B987DF006C1918 /* UAInboxMessageListController.m */,
+				F7E8D52516B987DF006C1918 /* UAInboxMessageViewController.h */,
+				F7E8D52616B987DF006C1918 /* UAInboxMessageViewController.m */,
+				F7E8D52716B987DF006C1918 /* UAInboxNavUI.h */,
+				F7E8D52816B987DF006C1918 /* UAInboxNavUI.m */,
+				F7E8D52916B987DF006C1918 /* UAInboxOverlayController.h */,
+				F7E8D52A16B987DF006C1918 /* UAInboxOverlayController.m */,
+				F7E8D52B16B987DF006C1918 /* UAInboxUI.h */,
+				F7E8D52C16B987DF006C1918 /* UAInboxUI.m */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F7E8D52D16B987DF006C1918 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D52E16B987DF006C1918 /* Shared */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F7E8D52E16B987DF006C1918 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D52F16B987DF006C1918 /* check.png */,
+				F7E8D53016B987DF006C1918 /* check@2x.png */,
+				F7E8D53116B987DF006C1918 /* down.png */,
+				F7E8D53216B987DF006C1918 /* down@2x.png */,
+				F7E8D53316B987DF006C1918 /* Overlay */,
+				F7E8D53616B987DF006C1918 /* UAInboxLocalization.bundle */,
+				F7E8D53716B987DF006C1918 /* UAInboxMessageListCell.xib */,
+				F7E8D53816B987DF006C1918 /* UAInboxMessageListController.xib */,
+				F7E8D53916B987DF006C1918 /* UAInboxMessageViewController.xib */,
+				F7E8D53A16B987DF006C1918 /* uncheck.png */,
+				F7E8D53B16B987DF006C1918 /* uncheck@2x.png */,
+				F7E8D53C16B987DF006C1918 /* up.png */,
+				F7E8D53D16B987DF006C1918 /* up@2x.png */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F7E8D53316B987DF006C1918 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				F7E8D53416B987DF006C1918 /* overlayCloseBtn.png */,
+				F7E8D53516B987DF006C1918 /* overlayCloseBtn@2x.png */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -949,6 +1090,14 @@
 				BB8860E1159A7E9600584445 /* UALocationService+Internal.h in Headers */,
 				BB8860E9159A7E9600584445 /* UAContentURLCache+Internal.h in Headers */,
 				BB8860EA159A7E9600584445 /* UAAnalytics+Internal.h in Headers */,
+				F7E8D53F16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */,
+				F7E8D54316B987E0006C1918 /* UAInboxAlertHandler.h in Headers */,
+				F7E8D54716B987E0006C1918 /* UAInboxMessageListCell.h in Headers */,
+				F7E8D54B16B987E0006C1918 /* UAInboxMessageListController.h in Headers */,
+				F7E8D54F16B987E0006C1918 /* UAInboxMessageViewController.h in Headers */,
+				F7E8D55316B987E0006C1918 /* UAInboxNavUI.h in Headers */,
+				F7E8D55716B987E0006C1918 /* UAInboxOverlayController.h in Headers */,
+				F7E8D55B16B987E0006C1918 /* UAInboxUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,6 +1163,14 @@
 				BB42FB7B1509622700FC4B1B /* UALocationProviderDelegate.h in Headers */,
 				BB805C781523ACAD004FA950 /* UAContentURLCache+Internal.h in Headers */,
 				BB926B3D1540D1D000003975 /* UAAnalytics+Internal.h in Headers */,
+				F7E8D53E16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */,
+				F7E8D54216B987E0006C1918 /* UAInboxAlertHandler.h in Headers */,
+				F7E8D54616B987E0006C1918 /* UAInboxMessageListCell.h in Headers */,
+				F7E8D54A16B987E0006C1918 /* UAInboxMessageListController.h in Headers */,
+				F7E8D54E16B987E0006C1918 /* UAInboxMessageViewController.h in Headers */,
+				F7E8D55216B987E0006C1918 /* UAInboxNavUI.h in Headers */,
+				F7E8D55616B987E0006C1918 /* UAInboxOverlayController.h in Headers */,
+				F7E8D55A16B987E0006C1918 /* UAInboxUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1409,14 @@
 				BB886119159A7E9600584445 /* UAStandardLocationProvider.m in Sources */,
 				BB88611A159A7E9600584445 /* UABaseLocationProvider.m in Sources */,
 				BB88611B159A7E9600584445 /* UALocationCommonValues.m in Sources */,
+				F7E8D54116B987E0006C1918 /* UABeveledLoadingIndicator.m in Sources */,
+				F7E8D54516B987E0006C1918 /* UAInboxAlertHandler.m in Sources */,
+				F7E8D54916B987E0006C1918 /* UAInboxMessageListCell.m in Sources */,
+				F7E8D54D16B987E0006C1918 /* UAInboxMessageListController.m in Sources */,
+				F7E8D55116B987E0006C1918 /* UAInboxMessageViewController.m in Sources */,
+				F7E8D55516B987E0006C1918 /* UAInboxNavUI.m in Sources */,
+				F7E8D55916B987E0006C1918 /* UAInboxOverlayController.m in Sources */,
+				F7E8D55D16B987E0006C1918 /* UAInboxUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1306,6 +1471,14 @@
 				BBB87E3315057C7F00971CEC /* UAStandardLocationProvider.m in Sources */,
 				BBB87E3915057CF200971CEC /* UABaseLocationProvider.m in Sources */,
 				BB42FB7E150969F200FC4B1B /* UALocationCommonValues.m in Sources */,
+				F7E8D54016B987E0006C1918 /* UABeveledLoadingIndicator.m in Sources */,
+				F7E8D54416B987E0006C1918 /* UAInboxAlertHandler.m in Sources */,
+				F7E8D54816B987E0006C1918 /* UAInboxMessageListCell.m in Sources */,
+				F7E8D54C16B987E0006C1918 /* UAInboxMessageListController.m in Sources */,
+				F7E8D55016B987E0006C1918 /* UAInboxMessageViewController.m in Sources */,
+				F7E8D55416B987E0006C1918 /* UAInboxNavUI.m in Sources */,
+				F7E8D55816B987E0006C1918 /* UAInboxOverlayController.m in Sources */,
+				F7E8D55C16B987E0006C1918 /* UAInboxUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
