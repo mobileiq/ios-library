@@ -258,6 +258,19 @@
 		E9F73FB412ADE93A003CF572 /* UA_ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F73FB212ADE93A003CF572 /* UA_ASIDataDecompressor.m */; };
 		E9FFDD8D129BAADB0012EF40 /* UADownloadContent.h in Headers */ = {isa = PBXBuildFile; fileRef = E9FFDD8B129BAADB0012EF40 /* UADownloadContent.h */; };
 		E9FFDD8E129BAADB0012EF40 /* UADownloadContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FFDD8C129BAADB0012EF40 /* UADownloadContent.m */; };
+		F73F512116BA9F2000480E30 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D52F16B987DF006C1918 /* check.png */; };
+		F73F512216BA9F2000480E30 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53016B987DF006C1918 /* check@2x.png */; };
+		F73F512316BA9F2000480E30 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53116B987DF006C1918 /* down.png */; };
+		F73F512416BA9F2000480E30 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53216B987DF006C1918 /* down@2x.png */; };
+		F73F512516BA9F2000480E30 /* overlayCloseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53416B987DF006C1918 /* overlayCloseBtn.png */; };
+		F73F512616BA9F2000480E30 /* overlayCloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53516B987DF006C1918 /* overlayCloseBtn@2x.png */; };
+		F73F512716BA9F2000480E30 /* UAInboxMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53716B987DF006C1918 /* UAInboxMessageListCell.xib */; };
+		F73F512816BA9F2000480E30 /* UAInboxMessageListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53816B987DF006C1918 /* UAInboxMessageListController.xib */; };
+		F73F512916BA9F2000480E30 /* UAInboxMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53916B987DF006C1918 /* UAInboxMessageViewController.xib */; };
+		F73F512A16BA9F2000480E30 /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53A16B987DF006C1918 /* uncheck.png */; };
+		F73F512B16BA9F2000480E30 /* uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53B16B987DF006C1918 /* uncheck@2x.png */; };
+		F73F512C16BA9F2000480E30 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53C16B987DF006C1918 /* up.png */; };
+		F73F512D16BA9F2000480E30 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7E8D53D16B987DF006C1918 /* up@2x.png */; };
 		F7E8D53E16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */; };
 		F7E8D53F16B987E0006C1918 /* UABeveledLoadingIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E8D51D16B987DF006C1918 /* UABeveledLoadingIndicator.h */; };
 		F7E8D54016B987E0006C1918 /* UABeveledLoadingIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8D51E16B987DF006C1918 /* UABeveledLoadingIndicator.m */; };
@@ -1200,6 +1213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB886129159A7E9600584445 /* Build configuration list for PBXNativeTarget "AirshipPushLib" */;
 			buildPhases = (
+				F73F511F16BA9F0400480E30 /* Resources */,
 				BB8860B0159A7E9600584445 /* Headers */,
 				BB8860EB159A7E9600584445 /* Sources */,
 				BB88611C159A7E9600584445 /* Frameworks */,
@@ -1324,6 +1338,26 @@
 			files = (
 				7BB679111429288D00B877DB /* InfoPlist.strings in Resources */,
 				7BB679131429288D00B877DB /* UAUtilsTest.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F73F511F16BA9F0400480E30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F73F512116BA9F2000480E30 /* check.png in Resources */,
+				F73F512216BA9F2000480E30 /* check@2x.png in Resources */,
+				F73F512316BA9F2000480E30 /* down.png in Resources */,
+				F73F512416BA9F2000480E30 /* down@2x.png in Resources */,
+				F73F512516BA9F2000480E30 /* overlayCloseBtn.png in Resources */,
+				F73F512616BA9F2000480E30 /* overlayCloseBtn@2x.png in Resources */,
+				F73F512716BA9F2000480E30 /* UAInboxMessageListCell.xib in Resources */,
+				F73F512816BA9F2000480E30 /* UAInboxMessageListController.xib in Resources */,
+				F73F512916BA9F2000480E30 /* UAInboxMessageViewController.xib in Resources */,
+				F73F512A16BA9F2000480E30 /* uncheck.png in Resources */,
+				F73F512B16BA9F2000480E30 /* uncheck@2x.png in Resources */,
+				F73F512C16BA9F2000480E30 /* up.png in Resources */,
+				F73F512D16BA9F2000480E30 /* up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
