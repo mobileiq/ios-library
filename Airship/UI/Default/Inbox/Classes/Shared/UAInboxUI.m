@@ -163,9 +163,9 @@ SINGLETON_IMPLEMENTATION(UAInboxUI)
     
     // BUG: Workaround. ModalViewController does not handle resizing correctly if
     // dismissed in landscape when status bar is visible
-    if (![UIApplication sharedApplication].statusBarHidden) {
-        con.view.frame = UAFrameForCurrentOrientation(con.view.frame);
-    }
+//    if (![UIApplication sharedApplication].statusBarHidden) {
+//        con.view.frame = UAFrameForCurrentOrientation(con.view.frame);
+//    }
 }
 
 + (void)quitInbox {
