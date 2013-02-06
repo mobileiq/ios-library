@@ -54,8 +54,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     if(!message.unread) {
         unreadIndicator.hidden = YES;
+        title.font = [UIFont systemFontOfSize:18];
     } else {
         unreadIndicator.hidden = NO;
+        title.font = [UIFont boldSystemFontOfSize:18];
     }
 }
 

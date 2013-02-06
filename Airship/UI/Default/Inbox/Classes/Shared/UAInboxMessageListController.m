@@ -33,6 +33,8 @@
 #import "UAInboxMessage.h"
 #import "UAInboxMessageList.h"
 
+#define ROW_HEIGHT 44
+
 @interface UAInboxMessageListController()
 
 - (void)updateNavigationBadge;      // indicate title and unread count
@@ -110,8 +112,16 @@
     return self;
 }
 
+- (void)updateUI {
+    NSString *baseString = [[[UAInbox shared] messageList] unreadCount] ? @"Inbox (%i)" : @"Inbox";
+    self.title = [NSString stringWithFormat:baseString, [[[UAInbox shared] messageList] unreadCount]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self updateUI];
+    
+    self.messageTable.rowHeight = ROW_HEIGHT;
     
     editItem = [[UIBarButtonItem alloc]
                 initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
@@ -126,7 +136,6 @@
     self.navigationItem.rightBarButtonItem = editItem;
 
     [self createToolbarItems];
-    [self createNavigationBadge];
 
     selectedIndexPathsForEditing = [[NSMutableSet alloc] init];   
 }
@@ -464,6 +473,7 @@
 
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self updateUI];
     UAInboxMessage *message = [[UAInboxMessageList shared] messageAtIndex:indexPath.row];
     [UAInbox displayMessage:self.navigationController message:message.messageID];
 }

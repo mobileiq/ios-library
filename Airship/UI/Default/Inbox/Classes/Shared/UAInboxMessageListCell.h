@@ -33,7 +33,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 @interface UAInboxMessageListCell : UITableViewCell {
     IBOutlet UILabel* title;
     IBOutlet UILabel* dateView;
-    IBOutlet UIView* unreadIndicator;
+    IBOutlet UIImageView* unreadIndicator;
     IBOutlet UIImageView *checkmark;
     IBOutlet UIView *selectedEditingBackgroundView;
 }
