@@ -48,7 +48,6 @@
 }
 
 -(void)notifyObservers:(SEL)selector {
-    NSLog(@"called sel: %@ calling sel: %@", NSStringFromSelector(_cmd), NSStringFromSelector(selector));
     @synchronized(self) {
         NSSet* observer_copy = [observers copy];
          //TODO, there has got to be a better way to avoid http://paste.pocoo.org/show/lNe6xjcgRjeDYOtl2jnX/
@@ -62,7 +61,6 @@
 }
 
 -(void)notifyObservers:(SEL)selector withObject:(id)arg1 {
-    NSLog(@"called sel: %@ calling sel: %@ arg: %@", NSStringFromSelector(_cmd), NSStringFromSelector(selector), arg1);
     @synchronized(self) {
         NSSet* observer_copy = [observers copy];
         for (id observer in observer_copy) {
@@ -75,7 +73,6 @@
 }
 
 -(void)notifyObservers:(SEL)selector withObject:(id)arg1 withObject:(id)arg2 {
-    NSLog(@"called sel: %@ calling sel: %@ arg: %@, arg2: %@", NSStringFromSelector(_cmd), NSStringFromSelector(selector), arg1, arg2);
     @synchronized(self) {
         NSSet* observer_copy = [observers copy];
         for (id observer in observer_copy) {
