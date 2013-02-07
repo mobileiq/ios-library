@@ -119,7 +119,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self updateUI];
     
     self.messageTable.rowHeight = ROW_HEIGHT;
     
@@ -179,7 +178,7 @@
     } else {
         [self coverUpEmptyListIfNeeded];
         [self tableReloadData];
-        [self updateNavigationBadge];
+        [self updateUI];
     }
     
     [messageTable deselectRowAtIndexPath:[messageTable indexPathForSelectedRow] animated:animated];
@@ -473,7 +472,6 @@
 
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self updateUI];
     UAInboxMessage *message = [[UAInboxMessageList shared] messageAtIndex:indexPath.row];
     [UAInbox displayMessage:self.navigationController message:message.messageID];
 }
@@ -573,7 +571,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     UAInboxMessageListCell *cell = (UAInboxMessageListCell *)[self.messageTable cellForRowAtIndexPath:indexPath];
     cell.unreadIndicator.hidden = YES;
-    [self updateNavigationBadge];
+    [self updateUI];
 }
 
 #pragma mark -
