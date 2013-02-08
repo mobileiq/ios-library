@@ -64,6 +64,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - (void)layoutSubviews {
     if(self.editing) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.unreadIndicator.alpha = 0.5;
 
         if (self.editingStyle == UITableViewCellEditingStyleNone) {
             // batch update
@@ -84,6 +85,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         self.selectionStyle = UITableViewCellSelectionStyleBlue;
         checkmark.hidden = YES;
         dateView.hidden = NO;
+        self.unreadIndicator.alpha = 1.0;
     }
 
     [super layoutSubviews];

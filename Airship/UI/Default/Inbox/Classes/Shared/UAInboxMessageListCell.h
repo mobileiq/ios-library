@@ -51,7 +51,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Indicates whether a message has previously been read.
  */
-@property (nonatomic, retain) UIView* unreadIndicator;
+@property (nonatomic, retain) UIImageView* unreadIndicator;
 
 /**
  * Checkmark image used in batch message selection
