@@ -52,6 +52,8 @@
 @synthesize messageViewController;
 @synthesize popoverController;
 @synthesize popoverButton;
+@synthesize popoverRect;
+@synthesize showsMessagesModally;
 @synthesize useOverlay;
 @synthesize isVisible;
 @synthesize popoverSize;
@@ -96,6 +98,8 @@ static BOOL runiPhoneTargetOniPad = NO;
         alertHandler = [[UAInboxAlertHandler alloc] init];
         
         self.popoverSize = CGSizeMake(320, 1100);
+        [self setPopoverRect:CGRectZero];
+        [self setShowsMessagesModally:NO];
     }
     
     return self;
@@ -108,51 +112,55 @@ static BOOL runiPhoneTargetOniPad = NO;
 + (void)displayInbox:(UIViewController *)viewController animated:(BOOL)animated {
     
     [[UAInbox shared].messageList addObserver:[UAInboxNavUI shared].messageListController];
-
+    
     if ([UAInboxNavUI shared].isVisible) {
         //don't display twice
         return;
     }
-
-    if ([viewController isKindOfClass:[UINavigationController class]]) {
-        [UAInboxNavUI shared].isVisible = YES;
-        if (viewController) {
-            [UAInboxNavUI shared].inboxParentController = viewController;
+    
+    [UAInboxNavUI shared].isVisible = YES;
+    if (viewController) {
+        [UAInboxNavUI shared].inboxParentController = viewController;
+    }
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !runiPhoneTargetOniPad) {
+        [UAInboxNavUI shared].navigationController = [[[UINavigationController alloc] initWithRootViewController:[UAInboxNavUI shared].messageListController] autorelease];
+        [UAInboxNavUI shared].popoverController = [[[UIPopoverController alloc] initWithContentViewController:[UAInboxNavUI shared].navigationController] autorelease];
+        
+        [UAInboxNavUI shared].popoverController.popoverContentSize = [UAInboxNavUI shared].popoverSize;
+        [UAInboxNavUI shared].messageListController.contentSizeForViewInPopover = [UAInboxNavUI shared].popoverSize;
+        
+        [UAInboxNavUI shared].popoverController.delegate = [UAInboxNavUI shared];
+        
+        if ([UAInboxNavUI shared].popoverButton) {
+            [[UAInboxNavUI shared].popoverController
+             presentPopoverFromBarButtonItem:[UAInboxNavUI shared].popoverButton
+             permittedArrowDirections:UIPopoverArrowDirectionAny
+             animated:animated];
+        }
+        else if (!CGRectEqualToRect([[UAInboxNavUI shared] popoverRect], CGRectZero)) {
+            [[UAInboxNavUI shared].popoverController presentPopoverFromRect:[[UAInboxNavUI shared] popoverRect]
+                                                                     inView:[[[UAInboxNavUI shared] inboxParentController] view]
+                                                   permittedArrowDirections:UIPopoverArrowDirectionUp
+                                                                   animated:YES];
         }
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && !runiPhoneTargetOniPad) {
-            [UAInboxNavUI shared].navigationController = [[[UINavigationController alloc] initWithRootViewController:[UAInboxNavUI shared].messageListController] autorelease];
-            [UAInboxNavUI shared].popoverController = [[[UIPopoverController alloc] initWithContentViewController:[UAInboxNavUI shared].navigationController] autorelease];
-            
-            [UAInboxNavUI shared].popoverController.popoverContentSize = [UAInboxNavUI shared].popoverSize;
-            [UAInboxNavUI shared].messageListController.contentSizeForViewInPopover = [UAInboxNavUI shared].popoverSize;
-            
-            [UAInboxNavUI shared].popoverController.delegate = [UAInboxNavUI shared];
-            
-            [[UAInboxNavUI shared].popoverController 
-                presentPopoverFromBarButtonItem:[UAInboxNavUI shared].popoverButton
-                       permittedArrowDirections:UIPopoverArrowDirectionAny
-                                       animated:animated];
-        } else {
-            [UAInboxNavUI shared].navigationController = (UINavigationController *)viewController;
-            [[UAInboxNavUI shared].navigationController pushViewController:[UAInboxNavUI shared].messageListController animated:animated];
-        }
     } else {
-        UALOG(@"Not a navigation controller");
+        [UAInboxNavUI shared].navigationController = (UINavigationController *)viewController;
+        [[UAInboxNavUI shared].navigationController pushViewController:[UAInboxNavUI shared].messageListController animated:animated];
     }
-
-} 
-
+    
+}
 
 + (void)displayMessage:(UIViewController *)viewController message:(NSString *)messageID {
-
+    
     if(![UAInboxNavUI shared].isVisible) {
         
         if ([UAInboxNavUI shared].useOverlay) {
             [UAInboxOverlayController showWindowInsideViewController:[UAInboxNavUI shared].inboxParentController withMessageID:messageID];
             return;
         }
-
+        
         else {
             UALOG(@"UI needs to be brought up!");
             [UAInboxNavUI displayInbox:viewController?:[UAInboxNavUI shared].inboxParentController animated:NO];
@@ -162,19 +170,40 @@ static BOOL runiPhoneTargetOniPad = NO;
     // If the message view is already open, just load the first message.
     if ([viewController isKindOfClass:[UINavigationController class]]) {
 		
-        // For iPhone
-        UINavigationController *navController = (UINavigationController *)viewController;
-        
-		if ([navController.topViewController class] == [UAInboxMessageViewController class]) {
-            [[UAInboxNavUI shared].messageViewController loadMessageForID:messageID];
-        } else {
-			
-            [UAInboxNavUI shared].messageViewController = 
-                [[[UAInboxMessageViewController alloc] initWithNibName:@"UAInboxMessageViewController" bundle:nil] autorelease];			
-            [[UAInboxNavUI shared].messageViewController loadMessageForID:messageID];
-            [navController pushViewController:[UAInboxNavUI shared].messageViewController animated:YES];
+        if (![[UAInboxNavUI shared] showsMessagesModally]) {
+            // For iPhone
+            UINavigationController *navController = (UINavigationController *)viewController;
+            
+            if ([navController.topViewController class] == [UAInboxMessageViewController class]) {
+                [[UAInboxNavUI shared].messageViewController loadMessageForID:messageID];
+            } else {
+                
+                [UAInboxNavUI shared].messageViewController =
+                [[[UAInboxMessageViewController alloc] initWithNibName:@"UAInboxMessageViewController" bundle:nil] autorelease];
+                [[UAInboxNavUI shared].messageViewController loadMessageForID:messageID];
+                [navController pushViewController:[UAInboxNavUI shared].messageViewController animated:YES];
+            }
+        }
+        else {
+            [[UAInboxNavUI shared] setInboxParentController:viewController];
+            
+            UAInboxMessageViewController *msgVC = [[UAInboxMessageViewController alloc] initWithNibName:nil bundle:nil];
+            [msgVC loadMessageForID:messageID];
+            
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:msgVC];
+            UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:[UAInboxNavUI shared]
+                                                                          action:@selector(met_dismissModalMessageView)];
+            nav.topViewController.navigationItem.leftBarButtonItem = doneButton;
+            
+            [viewController presentViewController:nav animated:YES completion:NULL];
         }
     }
+}
+
+- (void)met_dismissModalMessageView {
+    [[[UAInboxNavUI shared] inboxParentController] dismissViewControllerAnimated:YES completion:NULL];
 }
 
 + (void)quitInbox {
@@ -234,5 +263,16 @@ static BOOL runiPhoneTargetOniPad = NO;
     [alertHandler showNewMessageAlert:alertText];
 }
 
+#pragma mark - Setter Overrides
+- (void)setPopoverButton:(UIBarButtonItem *)aPopoverButton {
+    [popoverButton autorelease];
+    popoverButton = [aPopoverButton retain];
+    popoverRect = CGRectZero;
+}
+
+- (void)setPopoverRect:(CGRect)aPopoverRect {
+    popoverRect = aPopoverRect;
+    RELEASE_SAFELY(popoverButton);
+}
 
 @end

@@ -85,6 +85,17 @@
 @property (nonatomic, retain) UIBarButtonItem *popoverButton;
 
 /**
+ * The rect from which the popover will be displayed from.
+ */
+@property (nonatomic, assign) CGRect popoverRect;
+
+/**
+ A BOOL determing whether to show messages modally or in
+ the navigation controller.
+ */
+@property (nonatomic, assign) BOOL showsMessagesModally;
+
+/**
  * The popover controller used for displaying the inbox in the iPad UI idiom.
  */
 @property (nonatomic, retain) UIPopoverController *popoverController;

@@ -466,6 +466,7 @@
         [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
     } else if (!self.editing) {
         [self didSelectRowAtIndexPath:indexPath];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
    
 }
