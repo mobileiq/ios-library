@@ -115,6 +115,7 @@
 - (void)updateUI {
     NSString *baseString = [[[UAInbox shared] messageList] unreadCount] ? @"Inbox (%i)" : @"Inbox";
     self.title = [NSString stringWithFormat:baseString, [[[UAInbox shared] messageList] unreadCount]];
+    [self.messageTable reloadData];
 }
 
 - (void)viewDidLoad {
