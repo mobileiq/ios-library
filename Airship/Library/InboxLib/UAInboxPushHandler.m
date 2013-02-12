@@ -32,8 +32,6 @@
 #import "UAAnalytics.h"
 #import "UAEvent.h"
 
-
-
 @implementation UAInboxPushHandler
 
 @synthesize viewingMessageID;
@@ -123,25 +121,7 @@
 }
 
 - (void)messageListLoaded {
-    
-    //only take action is there's a new message
-    if(viewingMessageID) {
-        
-        Class <UAInboxUIProtocol> uiClass  = [UAInbox shared].uiClass;
-        
-        //if the notification came in while the app was backgrounded, treat it as a launch message
-        if (hasLaunchMessage) {
-            [uiClass loadLaunchMessage];
-        }
-        
-        //otherwise, have the UI class display it
-        else {
-            [uiClass displayMessage:nil message:viewingMessageID];
-            [self setViewingMessageID:nil];
-        }
-    }
 }
-
 
 - (id)init {
     if (self = [super init]) {
