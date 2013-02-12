@@ -228,7 +228,8 @@
     [messageTable deselectRowAtIndexPath:[messageTable indexPathForSelectedRow] animated:NO];
     
     [self refreshBatchUpdateButtons];
-    
+
+    [self updateUI];
 }
 
 - (void)showLoadingScreen {
