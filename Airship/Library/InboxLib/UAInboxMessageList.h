@@ -129,4 +129,11 @@ typedef enum {
 
 @property(readonly) BOOL isRetrieving;
 
+/**
+ * Cache policy to use for the inboxCache. If not set, will be 0
+ * (NSURLRequestUseProtocolCachePolicy), which is the default for
+ * NSURLRequest.
+ */
+@property (nonatomic) NSURLRequestCachePolicy inboxCachePolicy;
+
 @end

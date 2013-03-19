@@ -25,6 +25,7 @@
 
 #import "UAHTTPConnection.h"
 #import "UAGlobal.h"
+#import "UAInbox.h"
 
 #import "UA_Base64.h"
 #import <zlib.h>
@@ -116,6 +117,7 @@
         return NO;
     } else {
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:request.url];
+        [urlRequest setCachePolicy:self.cachePolicy];
         for (NSString *header in [request.headers allKeys]) {
             [urlRequest setValue:[request.headers valueForKey:header] forHTTPHeaderField:header];
         }

@@ -75,6 +75,13 @@
 @property (assign, nonatomic) id<UAHTTPConnectionDelegate> delegate;
 @property (nonatomic, retain) NSURLConnection *urlConnection;
 
+/**
+ * Cache policy to use. If not set, will be 0
+ * (NSURLRequestUseProtocolCachePolicy), which is the default for
+ * NSURLRequest.
+ */
+@property (nonatomic) NSURLRequestCachePolicy cachePolicy;
+
 + (UAHTTPConnection *)connectionWithRequest:(UAHTTPRequest *)httpRequest;
 - (id)initWithRequest:(UAHTTPRequest *)httpRequest;
 - (BOOL)start;

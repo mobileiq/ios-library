@@ -134,6 +134,7 @@ static UAInboxMessageList *_messageList = nil;
     UAHTTPRequest *request = [UAUtils userHTTPRequestWithURLString:urlString method:@"GET"];
     request.userInfo = @{ UAInboxMessageRequestTypeKey : @(UAInboxMessageSingleMessage) };
     self.connection = [UAHTTPConnection connectionWithRequest:request];
+    self.connection.cachePolicy = self.inboxCachePolicy;
     self.connection.delegate = self;
     
     self.nRetrieving++;
