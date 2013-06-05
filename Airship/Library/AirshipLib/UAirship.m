@@ -118,15 +118,15 @@ UALogLevel uaLogLevel = UALogLevelUndefined;
 }
 
 + (BOOL)productionProfile {
-    static BOOL result = NO;
+    static BOOL production = YES;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSDictionary *entitlements = [self parseEmbeddedProfile][@"Entitlements"];
-        result = [entitlements[@"aps-environment"] isEqualToString:@"production"];
+        production = ![entitlements[@"aps-environment"] isEqualToString:@"development"];
     });
 
-    return result;
+    return production;
 }
 
 - (BOOL)isProductionProfile {
